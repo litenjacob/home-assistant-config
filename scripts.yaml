@@ -1,0 +1,125 @@
+vacuum_avas_room:
+  alias: Städa Avas rum
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: app_segment_clean
+      params: [16]
+
+vacuum_living_room:
+  alias: Städa vardagsrummet
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: app_segment_clean
+      params: [17]
+
+vacuum_kitchen:
+  alias: Städa köket
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: app_segment_clean
+      params: [18]
+
+vacuum_hallway:
+  alias: Städa hallen
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: app_segment_clean
+      params: [19]
+
+vacuum_ilons_room:
+  alias: Städa Ilons rum
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: app_segment_clean
+      params: [20]
+
+vacuum_master_bedroom:
+  alias: Städa sovrummet
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: app_segment_clean
+      params: [21]
+
+vacuum_under_kitchen_table:
+  alias: Städa under köksbordet
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: app_zoned_clean
+      params: [[30800,23950,32750,26150,2]]
+
+vacuum_everywhere:
+  alias: Städa överallt
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Turbo
+  - service: vacuum.start
+    data:
+      entity_id: vacuum.robban
+
+vacuum_silent:
+  alias: Städa tystare
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Quiet
+
+vacuum_standard:
+  alias: Städa vanligt
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Standard
+
+vacuum_turbo:
+  alias: Städa noggrannt
+  sequence:
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.robban
+      fan_speed: Turbo
