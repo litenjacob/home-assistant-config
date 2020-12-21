@@ -1,0 +1,80 @@
+- platform: template
+  sensors:
+    pool_temperature:
+      friendly_name: "Pool Temperature"
+      unit_of_measurement: "°C"
+      value_template: "{{ states('input_number.pool_temperature') }}"
+    pool_ph:
+      friendly_name: "Pool pH"
+      unit_of_measurement: "pH"
+      value_template: "{{ states('input_number.pool_ph') }}"
+    pool_orp:
+      friendly_name: "Pool ORP"
+      unit_of_measurement: "mV"
+      value_template: "{{ states('input_number.pool_orp') }}"
+    pool_salinity:
+      friendly_name: "Pool Salinity"
+      unit_of_measurement: "ppm"
+      value_template: "{{ states('input_number.pool_salinity') | float * 1000 }}"
+    pool_analyzed_at:
+      friendly_name: "Pool Latest Meassurement"
+      value_template: "{{ states('input_number.pool_analyzed_at')| int | timestamp_local | timestamp_custom('%d/%m/%Y %H:%M:%S') }}"
+    washer_state:
+      friendly_name: "Washer state"
+      value_template: >-
+        {% if is_state('sensor.tvattmaskin_washer_job_state', 'airWash') %}
+          Air Wash
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'cooling') %}
+          Kyler
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'delayWash') %}
+          Uppskjuten tvätt
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'drying') %}
+          Torkar
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'finish') %}
+          Avslutar
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'none') %}
+          Färdig
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'preWash') %}
+          Förtvättar
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'rinse') %}
+          Sköljer
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'spin') %}
+          Centrifugerar
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'wash') %}
+          Tvättar
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'weightSensing') %}
+          Väger
+        {% elif is_state('sensor.tvattmaskin_washer_job_state', 'wrinklePrevent') %}
+          Avskrynklar
+        {% endif %}
+    washer_duration:
+      friendly_name: "Washer duration"
+      value_template: >-
+        {% if is_state('sensor.tvattmaskin_washer_machine_state', 'run') %}
+          {{ (as_timestamp(now()) - as_timestamp(states("sensor.tvattmaskin_washer_completion_time") | default(0)) | int ) | timestamp_custom("%H:%M", false) }}
+        {% endif %}
+    dryer_state:
+      friendly_name: "Dryer state"
+      value_template: >-
+        {% if is_state('sensor.torktumlare_dryer_job_state', 'cooling') %}
+          Kyler
+        {% elif is_state('sensor.torktumlare_dryer_job_state', 'delayWash') %}
+          Uppskjuten tork
+        {% elif is_state('sensor.torktumlare_dryer_job_state', 'drying') %}
+          Torkar
+        {% elif is_state('sensor.torktumlare_dryer_job_state', 'finished') %}
+          Avslutar
+        {% elif is_state('sensor.torktumlare_dryer_job_state', 'none') %}
+          Färdig
+        {% elif is_state('sensor.torktumlare_dryer_job_state', 'weightSensing') %}
+          Väger
+        {% elif is_state('sensor.torktumlare_dryer_job_state', 'wrinklePrevent') %}
+          Avskrynklar
+        {% endif %}
+    dryer_duration:
+      friendly_name: "Dryer duration"
+      value_template: >-
+        {% if is_state('sensor.torktumlare_dryer_machine_state', 'run') %}
+          {{ (as_timestamp(now()) - as_timestamp(states("sensor.torktumlare_dryer_completion_time") | default(0)) | int ) | timestamp_custom("%H:%M", false) }}
+        {% endif %}
+

@@ -1,1 +1,29 @@
-[]
+- id: '1585489737608'
+  alias: Receive Blue Connect Meassurements
+  description: Receive data from Blue Connect via IFTTT webhook
+  trigger:
+  - platform: webhook
+    webhook_id: 7D3BC3BE-5337-4A06-B7F7-048B0F235F5B
+  condition: []
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.pool_temperature
+      value: '{{trigger.json.temperature | float}}'
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.pool_ph
+      value: '{{trigger.json.ph | float}}'
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.pool_orp
+      value: '{{trigger.json.orp | float}}'
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.pool_salinity
+      value: '{{trigger.json.salinity | float}}'
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.pool_analyzed_at
+      value: '{{as_timestamp(strptime(trigger.json.analyzedAt,"%B %d, %Y at %I:%M%p"))
+        | float}}'

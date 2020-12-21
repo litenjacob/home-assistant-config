@@ -1,99 +1,111 @@
 vacuum_silent:
   alias: Städa tyst
   sequence:
-    - service: vacuum.send_command
-      data:
-        entity_id: vacuum.robban
-        command: set_custom_mode
-        params: [101]
-
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: set_custom_mode
+      params:
+      - 101
 vacuum_standard:
   alias: Städa vanligt
   sequence:
-    - service: vacuum.send_command
-      data:
-        entity_id: vacuum.robban
-        command: set_custom_mode
-        params: [102]
-
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: set_custom_mode
+      params:
+      - 102
 vacuum_medium:
   alias: Städa mer
   sequence:
-    - service: vacuum.send_command
-      data:
-        entity_id: vacuum.robban
-        command: set_custom_mode
-        params: [103]
-
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: set_custom_mode
+      params:
+      - 103
 vacuum_turbo:
   alias: Städa noggrannt
   sequence:
-    - service: vacuum.send_command
-      data:
-        entity_id: vacuum.robban
-        command: set_custom_mode
-        params: [104]
-
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.robban
+      command: set_custom_mode
+      params:
+      - 104
 vacuum_avas_room:
   alias: Städa Avas rum
   sequence:
   - service: script.vacuum_silent
-  - service: vacuum.send_command
-    data:
-      entity_id: vacuum.robban
+  - data:
       command: app_segment_clean
-      params: [16]
-
+      entity_id: vacuum.robban
+      params:
+      - 20
+    service: vacuum.send_command
+  mode: single
+  icon: mdi:human-female-girl
 vacuum_living_room:
   alias: Städa vardagsrummet
   sequence:
   - service: script.vacuum_silent
-  - service: vacuum.send_command
-    data:
-      entity_id: vacuum.robban
+  - data:
       command: app_segment_clean
-      params: [17]
-
+      entity_id: vacuum.robban
+      params:
+      - 17
+    service: vacuum.send_command
+  mode: single
+  icon: mdi:sofa
 vacuum_kitchen:
   alias: Städa köket
   sequence:
   - service: script.vacuum_silent
-  - service: vacuum.send_command
-    data:
-      entity_id: vacuum.robban
+  - data:
       command: app_segment_clean
-      params: [18]
-
+      entity_id: vacuum.robban
+      params:
+      - 18
+    service: vacuum.send_command
+  mode: single
+  icon: mdi:stove
 vacuum_hallway:
   alias: Städa hallen
   sequence:
   - service: script.vacuum_silent
-  - service: vacuum.send_command
-    data:
-      entity_id: vacuum.robban
+  - data:
       command: app_segment_clean
-      params: [19]
-
+      entity_id: vacuum.robban
+      params:
+      - 16
+    service: vacuum.send_command
+  mode: single
+  icon: mdi:shoe-print
 vacuum_ilons_room:
   alias: Städa Ilons rum
   sequence:
   - service: script.vacuum_silent
-  - service: vacuum.send_command
-    data:
-      entity_id: vacuum.robban
+  - data:
       command: app_segment_clean
-      params: [20]
-
+      entity_id: vacuum.robban
+      params:
+      - 19
+    service: vacuum.send_command
+  mode: single
+  icon: mdi:human-male-boy
 vacuum_master_bedroom:
   alias: Städa sovrummet
   sequence:
   - service: script.vacuum_silent
-  - service: vacuum.send_command
-    data:
-      entity_id: vacuum.robban
+  - data:
       command: app_segment_clean
-      params: [21]
-
+      entity_id: vacuum.robban
+      params:
+      - 21
+    service: vacuum.send_command
+  mode: single
+  icon: mdi:bed-empty
 vacuum_under_kitchen_table:
   alias: Städa under köksbordet
   sequence:
@@ -102,8 +114,12 @@ vacuum_under_kitchen_table:
     data:
       entity_id: vacuum.robban
       command: app_zoned_clean
-      params: [[30800,23950,32750,26150,2]]
-
+      params:
+      - - 30800
+        - 23950
+        - 32750
+        - 26150
+        - 2
 vacuum_around_sofa:
   alias: Städa runt soffan
   sequence:
@@ -112,8 +128,12 @@ vacuum_around_sofa:
     data:
       entity_id: vacuum.robban
       command: app_zoned_clean
-      params: [[26500,23400,29200,25000,2]]
-
+      params:
+      - - 26500
+        - 23400
+        - 29200
+        - 25000
+        - 2
 vacuum_everywhere:
   alias: Städa överallt
   sequence:
